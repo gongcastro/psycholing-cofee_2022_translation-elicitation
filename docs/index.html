@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>The role of cognateness in non-native spoken word recognition</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Gonzalo Garcia-Castro, Serene Siow, Núria Sebastian-Galles, Kim Plunkett" />
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# The role of cognateness in non-native spoken word recognition
+## A translation elicitation study
+### Gonzalo Garcia-Castro, Serene Siow, Núria Sebastian-Galles, Kim Plunkett
+### Psycholinguistics Coffee
+### March 16th, 2022
+
+---
+
+class:
+
+
+
+# Non-native speech-comprehension
+
+Even for proficient bilinguals, non-native **speech comprehension is costly**&lt;sup&gt;1,2&lt;/sup&gt;
+
+&lt;br&gt;
+
+.footnote[
+[1] @lecumberri2010non, [2] @takata1990english, [3] @cutler2004patterns, [4] @christoffels2006cognate
+]
+
+--
+
+**Phonological mismatches** partly explain why:
+
+&gt; English /ˈpeɪpɚ/ to Spanish /pa'pel/ (/ɪ/ and /ɚ/ do not exist in Spanish)
+
+--
+
+
+**Lexical processing** mechanisms are engaged despite mismatches&lt;sup&gt;3&lt;/sup&gt;
+
+--
+
+
+
+**Cognates** (form-similar translations) are easier to translate&lt;sup&gt;4&lt;/sup&gt;:
+
+&gt; Translating *botella* to *bottle* is easier than translating *puerta* to *door*
+
+
+???
+
+* Native speaker of Spanish, native speaker of English
+* Non-native comprehension costlier
+* Phonological mismatches
+
+
+---
+class:
+
+# Two routes for translation
+
+.center[
+&lt;img src="../img/translation_1.png" alt="Translation diagram" width="450"/&gt;
+]
+
+---
+class:
+
+# Two routes for translation
+
+.center[
+&lt;img src="../img/translation_2.png" alt="Translation diagram" width="450"/&gt;
+]
+
+---
+class:
+
+# Two routes for translation
+
+.center[
+&lt;img src="../img/translation_3.png" alt="Translation diagram" width="450"/&gt;
+]
+
+---
+class:
+
+# Two routes for translation
+
+.center[
+&lt;img src="../img/translation_4.png" alt="Translation diagram" width="450"/&gt;
+]
+
+
+---
+class:
+
+# Two routes for translation
+
+.center[
+&lt;img src="../img/translation_5.png" alt="Translation diagram" width="450"/&gt;
+]
+
+
+---
+class:
+
+# A gap in the literature
+
+Most studies have collected data exclusively on high-proficiency bilinguals
+
+&gt; In both high and low-proficiency bilinguals, disentangling the involvement of the conceptual and the lexical routes is difficult
+
+
+
+---
+class:
+
+# The present study
+
+We asked adults to **translate words from an unfamiliar language** to their native language:
+
+&gt; If the lexical route is sufficient for translation, listeners should benefit from **phonological overlap**
+
+**Translation elicitation** task:
+
+.center[
+&lt;img src="../img/design.png" alt="Procedure" width="650"/&gt;
+]
+
+
+---
+class:
+
+# Methods
+
+## Participants
+
+
+* 34 **English natives** translating **Spanish words** (spa &amp;rarr; ENG)
+* 29 **English natives** translating **Catalan words** (spa &amp;rarr; ENG)
+* 28 **Spanish natives** translating **Catalan words** (cat &amp;rarr; SPA)
+
+Self-reported proficiency in language of test &lt; 2 in a 1-5 scale
+
+Proficiency in any other Roman language (e.g., Italian, Portuguese) &lt; 3
+
+
+---
+
+# Stimuli 
+
+
+**Catalan list**: 86 words
+**Spanish list**: 103 words
+
+&lt;br&gt;
+
+--
+
+High-frequency words uttered in child-directed speech
+
+Recorded by a Catalan-Spanish proficient bilingual
+
+
+---
+class:
+
+---
+class: 
+
+# Data analysis
+
+* Responses manually coded as **correct/incorrect** (typos allowed)
+
+--
+
+* **Logistic regression**: probability of correct translation
+
+--
+
+* **Predictors**: `\(Frequency\)`, `\(PTHN\)`, `\(Levenshtein\)`
+
+
+--
+
+* **Multilevel Bayesian model** (`brms`/Stan):
+
+&gt; Participants and items as grouping variables
+
+--
+
+* Incrementally added predictors and selected model with **best predictive accuracy**
+
+&gt; leave-one-one cross-validationc (*LOO*)
+
+
+---
+class:
+
+# Predictors
+
+* **Frequency**: lexical frequency of target word (from SUBTLEX-ESP&lt;sup&gt;1&lt;/sup&gt; and SUBTLEX-CAT&lt;sup&gt;2&lt;/sup&gt;) in Zipf scores (predicted positive impact)
+
+--
+
+* **PTHN**: number of phonological neighbours with higher frequency (from CLEARPOND &lt;sup&gt;3&lt;/sup&gt;) (predicted negative impact&lt;sup&gt;4&lt;/sup&gt;)
+
+&gt; *PTHN*&lt;sub&gt;book&lt;/sub&gt; = 16 / *PTHN*&lt;sub&gt;sock&lt;/sub&gt; = 3
+
+--
+
+* **Levenshtein**: phonological similarity between presented and target words&lt;sup&gt;5&lt;/sup&gt; (predicted positive impact)
+
+&gt; Levenshtein&lt;sub&gt;teɪbəl-mesa&lt;/sub&gt; = 5% / Levenshtein&lt;sub&gt;trEIn-tren&lt;/sub&gt; = 27%
+
+
+.footnote[
+[1] @cuetos2011subtlex, [2] @boada2020subtlex, [3] @marian2012clearpond, [4] @van1998orthographic, [5] @levenshtein1966binary
+]
+
+---
+
+# Stimuli 
+
+&lt;img src="index_files/figure-html/stimuli-plot-1.png" width="100%" /&gt;
+
+---
+class:
+
+# Results
+
+&lt;img src="index_files/figure-html/posterior-fixed-1.png" width="100%" /&gt;
+
+
+---
+class:
+
+&lt;img src="index_files/figure-html/predictions-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+---
+class:
+
+# Discussion
+
+Overall, participants were ~45% accurate
+
+--
+
+Participants benefited from phonological overlap (*Levenshtein*: +15% accuracy)
+
+--
+
+No evidence of competition for selection in the target language (no effect of *PTHN*)
+
+--
+
+Speakers of a similar language (cat-SPA):
+
+&gt; Were **more accurate**, even controlling for phonological overlap
+
+&gt; **Benefited more** from phonological overlap
+
+--
+
+**The lexical route is very informative for translation, even without conceptual knowledge**
+
+
+---
+class: inverse, center, middle
+
+
+# Appendix
+
+---
+class:
+
+&lt;img src="index_files/figure-html/posterior-sds-1.png" width="100%" /&gt;
+
+
+
+
+---
+
+class: center, middle
+
+<div id="wlibnndocl" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#wlibnndocl .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#wlibnndocl .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wlibnndocl .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#wlibnndocl .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#wlibnndocl .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wlibnndocl .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wlibnndocl .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#wlibnndocl .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#wlibnndocl .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#wlibnndocl .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#wlibnndocl .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#wlibnndocl .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#wlibnndocl .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#wlibnndocl .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#wlibnndocl .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#wlibnndocl .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#wlibnndocl .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wlibnndocl .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#wlibnndocl .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#wlibnndocl .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wlibnndocl .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#wlibnndocl .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#wlibnndocl .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wlibnndocl .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wlibnndocl .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#wlibnndocl .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#wlibnndocl .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wlibnndocl .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wlibnndocl .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wlibnndocl .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wlibnndocl .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wlibnndocl .gt_left {
+  text-align: left;
+}
+
+#wlibnndocl .gt_center {
+  text-align: center;
+}
+
+#wlibnndocl .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#wlibnndocl .gt_font_normal {
+  font-weight: normal;
+}
+
+#wlibnndocl .gt_font_bold {
+  font-weight: bold;
+}
+
+#wlibnndocl .gt_font_italic {
+  font-style: italic;
+}
+
+#wlibnndocl .gt_super {
+  font-size: 65%;
+}
+
+#wlibnndocl .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#wlibnndocl .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#wlibnndocl .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#wlibnndocl .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#wlibnndocl .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">L2</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">cat-ENG
+(N = 34)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">cat-SPA
+(N = 29)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">spa-ENG
+(N = 28)</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">None</td>
+<td class="gt_row gt_right">30</td>
+<td class="gt_row gt_right">18</td>
+<td class="gt_row gt_right">27</td></tr>
+    <tr><td class="gt_row gt_left">French</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">9</td>
+<td class="gt_row gt_right">-</td></tr>
+    <tr><td class="gt_row gt_left">German</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">-</td></tr>
+    <tr><td class="gt_row gt_left">Punjabi</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">-</td>
+<td class="gt_row gt_right">-</td></tr>
+    <tr><td class="gt_row gt_left">Several</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">-</td>
+<td class="gt_row gt_right">-</td></tr>
+    <tr><td class="gt_row gt_left">Other</td>
+<td class="gt_row gt_right">-</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">-</td></tr>
+    <tr><td class="gt_row gt_left">Russian</td>
+<td class="gt_row gt_right">-</td>
+<td class="gt_row gt_right">-</td>
+<td class="gt_row gt_right">1</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+
+---
+class:
+
+![](index_files/figure-html/post-re-word-1.png)&lt;!-- --&gt;
+
+---
+class:
+
+&lt;img src="index_files/figure-html/posterior-correlations-1.png" width="100%" /&gt;
+
+---
+class:
+
+&lt;img src="index_files/figure-html/participants_summary-1.png" width="50%" /&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
