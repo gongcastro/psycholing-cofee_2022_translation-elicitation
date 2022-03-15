@@ -31,7 +31,7 @@ Even for proficient bilinguals, non-native **speech comprehension is costly**&lt
 &lt;br&gt;
 
 .footnote[
-[1] @lecumberri2010non, [2] @takata1990english, [3] @cutler2004patterns, [4] @christoffels2006cognate
+[1] Lecumberri et al. (2010), [2] Takata and Nábělek (1990), [3] Cutler et al. (2004), [4] Christoffels et al. (2006)
 ]
 
 --
@@ -43,79 +43,29 @@ Even for proficient bilinguals, non-native **speech comprehension is costly**&lt
 --
 
 
-**Lexical processing** mechanisms are engaged despite mismatches&lt;sup&gt;3&lt;/sup&gt;
+**Lexical processing** mechanisms are engaged despite these mismatches&lt;sup&gt;3&lt;/sup&gt;, provided some acoustic similarity between the input and the native word-form
+
+
+---
+class:
+
+# Non-native word recognition
+
+Even in **total absence of familiarity** with the language, some sound sequences can trigger **word recognition**:
+
+&gt; **Cognates** (form-similar translations)&lt;sup&gt;4&lt;/sup&gt;:
+
+&gt; Hearing/reading *botella* in Spanish can elicit *bottle* in the English listener 
+
+&lt;br&gt;
 
 --
 
+In absence of conceptual knowledge, **phonological similarity** is the only source of information
 
+&gt; To what extent is **cross-language phonological similarity** sufficient for word recognition?
 
-**Cognates** (form-similar translations) are easier to translate&lt;sup&gt;4&lt;/sup&gt;:
-
-&gt; Translating *botella* to *bottle* is easier than translating *puerta* to *door*
-
-
-???
-
-* Native speaker of Spanish, native speaker of English
-* Non-native comprehension costlier
-* Phonological mismatches
-
-
----
-class:
-
-# Two routes for translation
-
-.center[
-&lt;img src="../img/translation_1.png" alt="Translation diagram" width="450"/&gt;
-]
-
----
-class:
-
-# Two routes for translation
-
-.center[
-&lt;img src="../img/translation_2.png" alt="Translation diagram" width="450"/&gt;
-]
-
----
-class:
-
-# Two routes for translation
-
-.center[
-&lt;img src="../img/translation_3.png" alt="Translation diagram" width="450"/&gt;
-]
-
----
-class:
-
-# Two routes for translation
-
-.center[
-&lt;img src="../img/translation_4.png" alt="Translation diagram" width="450"/&gt;
-]
-
-
----
-class:
-
-# Two routes for translation
-
-.center[
-&lt;img src="../img/translation_5.png" alt="Translation diagram" width="450"/&gt;
-]
-
-
----
-class:
-
-# A gap in the literature
-
-Most studies have collected data exclusively on high-proficiency bilinguals
-
-&gt; In both high and low-proficiency bilinguals, disentangling the involvement of the conceptual and the lexical routes is difficult
+&gt; Previous literature relies on **bilingual samples** (who can exploit both conceptual and lexical information)
 
 
 
@@ -138,39 +88,235 @@ We asked adults to **translate words from an unfamiliar language** to their nati
 ---
 class:
 
+&lt;br&gt;
+
+.center[
+&lt;img src="../img/translation_1.png" alt="Translation diagram" width="450"/&gt;
+]
+
+---
+class:
+
+&lt;br&gt;
+
+.center[
+&lt;img src="../img/translation_2.png" alt="Translation diagram" width="450"/&gt;
+]
+
+---
+class:
+
+&lt;br&gt;
+
+.center[
+&lt;img src="../img/translation_3.png" alt="Translation diagram" width="450"/&gt;
+]
+
+---
+class:
+
+&lt;br&gt;
+
+.center[
+&lt;img src="../img/translation_4.png" alt="Translation diagram" width="450"/&gt;
+]
+
+---
+class:
+
+&lt;br&gt;
+
+.center[
+&lt;img src="../img/translation_5.png" alt="Translation diagram" width="450"/&gt;
+]
+
+---
+class:
+
+&lt;br&gt;
+
+.center[
+&lt;img src="../img/translation_6.png" alt="Translation diagram" width="450"/&gt;
+]
+
+---
+class:
+
+&lt;br&gt;
+
+.center[
+&lt;img src="../img/translation_7.png" alt="Translation diagram" width="450"/&gt;
+]
+
+---
+class:
+
 # Methods
 
 ## Participants
 
+**Online** recruitment and data collection (PsychoPy/Pavlovia)
+
+&lt;br&gt;
 
 * 34 **English natives** translating **Spanish words** (spa &amp;rarr; ENG)
 * 29 **English natives** translating **Catalan words** (spa &amp;rarr; ENG)
 * 28 **Spanish natives** translating **Catalan words** (cat &amp;rarr; SPA)
 
+&lt;br&gt;
+
 Self-reported proficiency in language of test &lt; 2 in a 1-5 scale
 
-Proficiency in any other Roman language (e.g., Italian, Portuguese) &lt; 3
+Proficiency in any other Romance language (e.g., Italian, Portuguese) &lt; 3
 
 
 ---
 
 # Stimuli 
 
+High-frequency words uttered in child-directed speech
+
+Recorded by a Catalan-Spanish proficient bilingual
 
 **Catalan list**: 86 words
 **Spanish list**: 103 words
 
 &lt;br&gt;
 
---
+---
+class:
 
-High-frequency words uttered in child-directed speech
+# Predictors
 
-Recorded by a Catalan-Spanish proficient bilingual
+## Phonological similarity (Lenveshtein similarity)
+
+&gt; Phonological similarity between presented and target words&lt;sup&gt;1, 2&lt;/sup&gt;
+
+**Levenshtein distance**: number of editions separating two character strings
+
+&lt;br&gt;
+
+$$
+`\begin{align}
+1 - \frac{\text{Levenshtein distance}}{Max(\text{Stimulus length}, \text{Translation length})}
+\end{align}`
+$$
+
+&lt;br&gt;
+
+
+```r
+stringdist::stringdist("teɪbəl", "mesa")
+```
+
+```
+## [1] 19
+```
+
+```r
+stringdist::stringsim("teɪbəl", "mesa")
+```
+
+```
+## [1] 0.05
+```
+
+
+&lt;br&gt;
+
+
+```r
+stringdist::stringdist("trEIn", "tɾEn")
+```
+
+```
+## [1] 8
+```
+
+```r
+stringdist::stringsim("trEIn", "tɾEn")
+```
+
+```
+## [1] 0.2727273
+```
+
+
+&lt;br&gt;
+
+.footnote[
+[1] Floccia, C., et al. (2018), [2] Levenshtein (1966)
+]
+
+
+
+class:
+
+# Predictors
+
+## Higher-frequency phonological neighbourhood density (*PTHN*)
+
+&gt; Number of phonological neighbours with higher frequency (from CLEARPOND &lt;sup&gt;1,2&lt;/sup&gt;)
+
+*calcetín*-*sock*: 1
+
+sick, rock, Doc, knock, sake, lock, suck, shock, seek, sec, sack, cock, dock, stock, socks, soccer
+
+*mesa*-*table*: 1
+
+bad, heard, word, bed, third, board, burn
+
+
+.footnote[
+[1] Marian et al. (2012), [2] Van Heuven et al. (1998)
+]
 
 
 ---
 class:
+
+# Predictors
+
+&lt;img src="index_files/figure-html/stimuli-plot-1.png" width="100%" /&gt;
+
+---
+class: 
+
+# Predictors
+
+## Lexical frequency (Zipf score)
+
+&gt; Lexical frequency of target word (from SUBTLEX-ENG&lt;sup&gt;1&lt;/sup&gt; and SUBTLEX-SPA&lt;sup&gt;2&lt;/sup&gt;) in Zipf scores
+
+&lt;br&gt;
+
+$$
+`\begin{align}
+Frequency = log_{10}(fpmw+3) \\ \text{fpmw: frequency per million words}
+\end{align}`
+$$
+
+
+
+.footnote[
+[1] Cuetos et al. (2012), [2] Boada et al. (2020), [3] Marian et al. (2012)
+]
+
+---
+class:
+
+# Predictors
+
+## Group (*a priori* contrasts)
+
+Do Spanish listeners perform better than English listeners after accounting for phonological similarity?
+
+&gt; eng-CAT &amp; eng-SPA vs. spa-CAT
+
+Do English listeners perform better translating Spanish words than Catalan words?
+
+* eng-CAT vs. eng-SPA
+
 
 ---
 class: 
@@ -181,55 +327,20 @@ class:
 
 --
 
-* **Logistic regression**: probability of correct translation
+* **Logistic regression**
+
+- Response variable: probability of **correct translation**
+- Predictors: **Levenshtein**, ***PTHN***, **Group** (3-way interaction), and **Frequency** (nuance predictor)
 
 --
 
-* **Predictors**: `\(Frequency\)`, `\(PTHN\)`, `\(Levenshtein\)`
-
-
---
-
-* **Multilevel Bayesian model** (`brms`/Stan):
-
-&gt; Participants and items as grouping variables
+* **Multilevel Bayesian model** (`brms`/Stan): *participants* and *items* as grouping variables
 
 --
 
-* Incrementally added predictors and selected model with **best predictive accuracy**
+* We incrementally added predictors and selected model with **best predictive accuracy**
 
-&gt; leave-one-one cross-validationc (*LOO*)
-
-
----
-class:
-
-# Predictors
-
-* **Frequency**: lexical frequency of target word (from SUBTLEX-ESP&lt;sup&gt;1&lt;/sup&gt; and SUBTLEX-CAT&lt;sup&gt;2&lt;/sup&gt;) in Zipf scores (predicted positive impact)
-
---
-
-* **PTHN**: number of phonological neighbours with higher frequency (from CLEARPOND &lt;sup&gt;3&lt;/sup&gt;) (predicted negative impact&lt;sup&gt;4&lt;/sup&gt;)
-
-&gt; *PTHN*&lt;sub&gt;book&lt;/sub&gt; = 16 / *PTHN*&lt;sub&gt;sock&lt;/sub&gt; = 3
-
---
-
-* **Levenshtein**: phonological similarity between presented and target words&lt;sup&gt;5&lt;/sup&gt; (predicted positive impact)
-
-&gt; Levenshtein&lt;sub&gt;teɪbəl-mesa&lt;/sub&gt; = 5% / Levenshtein&lt;sub&gt;trEIn-tren&lt;/sub&gt; = 27%
-
-
-.footnote[
-[1] @cuetos2011subtlex, [2] @boada2020subtlex, [3] @marian2012clearpond, [4] @van1998orthographic, [5] @levenshtein1966binary
-]
-
----
-
-# Stimuli 
-
-&lt;img src="index_files/figure-html/stimuli-plot-1.png" width="100%" /&gt;
+&gt; Leave-one-one cross-validation (*LOO*)
 
 ---
 class:
@@ -277,6 +388,26 @@ Speakers of a similar language (cat-SPA):
 class: inverse, center, middle
 
 
+# References
+
+Lecumberri, M. L. G., Cooke, M., &amp; Cutler, A. (2010). Non-native speech perception in adverse conditions: A review. Speech communication, 52(11-12), 864-886.
+
+Takata, Y., &amp; Nábělek, A. K. (1990). English consonant recognition in noise and in reverberation by Japanese and American listeners. The Journal of the Acoustical Society of America, 88(2), 663-666.
+
+Cutler, A., Weber, A., Smits, R., &amp; Cooper, N. (2004). Patterns of English phoneme confusions by native and non-native listeners. The Journal of the Acoustical Society of America, 116(6), 3668-3678.
+
+Christoffels, I. K., De Groot, A. M., &amp; Kroll, J. F. (2006). Memory and language skills in simultaneous interpreters: The role of expertise and language proficiency. Journal of Memory and Language, 54(3), 324-345.
+
+Floccia, C., Sambrook, T. D., Delle Luche, C., Kwok, R., Goslin, J., White, L., ... &amp; Patricia, J. (2018). Vocabulary of 2-year-olds learning English and an additional language: norms and effects of linguistic distance. Monographs of the Society for Research in Child Development, 83(1), 7-108.
+
+Levenshtein, V. I. (1966, February). Binary codes capable of correcting deletions, insertions, and reversals. In Soviet physics doklady (Vol. 10, No. 8, pp. 707-710).
+
+Marian, V., Bartolotti, J., Chabal, S., &amp; Shook, A. (2012). CLEARPOND: Cross-linguistic easy-access resource for phonological and orthographic neighborhood densities.
+
+Van Heuven, W. J., Dijkstra, T., &amp; Grainger, J. (1998). Orthographic neighborhood effects in bilingual word recognition. Journal of memory and language, 39(3), 458-483.
+
+Cuetos, F., Glez-Nosti, M., Barbón, A., &amp; Brysbaert, M. (2012). SUBTLEX-ESP: Spanish word frequencies based on film subtitles. Psicológica, 33(2), 133-143.
+
 # Appendix
 
 ---
@@ -291,12 +422,12 @@ class:
 
 class: center, middle
 
-<div id="wlibnndocl" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="duidrxlntb" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#wlibnndocl .gt_table {
+#duidrxlntb .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -321,7 +452,7 @@ class: center, middle
   border-left-color: #D3D3D3;
 }
 
-#wlibnndocl .gt_heading {
+#duidrxlntb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -333,7 +464,7 @@ class: center, middle
   border-right-color: #D3D3D3;
 }
 
-#wlibnndocl .gt_title {
+#duidrxlntb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -345,7 +476,7 @@ class: center, middle
   border-bottom-width: 0;
 }
 
-#wlibnndocl .gt_subtitle {
+#duidrxlntb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -357,13 +488,13 @@ class: center, middle
   border-top-width: 0;
 }
 
-#wlibnndocl .gt_bottom_border {
+#duidrxlntb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wlibnndocl .gt_col_headings {
+#duidrxlntb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -378,7 +509,7 @@ class: center, middle
   border-right-color: #D3D3D3;
 }
 
-#wlibnndocl .gt_col_heading {
+#duidrxlntb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -398,7 +529,7 @@ class: center, middle
   overflow-x: hidden;
 }
 
-#wlibnndocl .gt_column_spanner_outer {
+#duidrxlntb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -410,15 +541,15 @@ class: center, middle
   padding-right: 4px;
 }
 
-#wlibnndocl .gt_column_spanner_outer:first-child {
+#duidrxlntb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wlibnndocl .gt_column_spanner_outer:last-child {
+#duidrxlntb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wlibnndocl .gt_column_spanner {
+#duidrxlntb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -430,7 +561,7 @@ class: center, middle
   width: 100%;
 }
 
-#wlibnndocl .gt_group_heading {
+#duidrxlntb .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -455,7 +586,7 @@ class: center, middle
   vertical-align: middle;
 }
 
-#wlibnndocl .gt_empty_group_heading {
+#duidrxlntb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -470,15 +601,15 @@ class: center, middle
   vertical-align: middle;
 }
 
-#wlibnndocl .gt_from_md > :first-child {
+#duidrxlntb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wlibnndocl .gt_from_md > :last-child {
+#duidrxlntb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wlibnndocl .gt_row {
+#duidrxlntb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -497,7 +628,7 @@ class: center, middle
   overflow-x: hidden;
 }
 
-#wlibnndocl .gt_stub {
+#duidrxlntb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -510,7 +641,7 @@ class: center, middle
   padding-right: 5px;
 }
 
-#wlibnndocl .gt_stub_row_group {
+#duidrxlntb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -524,11 +655,11 @@ class: center, middle
   vertical-align: top;
 }
 
-#wlibnndocl .gt_row_group_first td {
+#duidrxlntb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wlibnndocl .gt_summary_row {
+#duidrxlntb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -538,16 +669,16 @@ class: center, middle
   padding-right: 5px;
 }
 
-#wlibnndocl .gt_first_summary_row {
+#duidrxlntb .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wlibnndocl .gt_first_summary_row.thick {
+#duidrxlntb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wlibnndocl .gt_last_summary_row {
+#duidrxlntb .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -557,7 +688,7 @@ class: center, middle
   border-bottom-color: #D3D3D3;
 }
 
-#wlibnndocl .gt_grand_summary_row {
+#duidrxlntb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -567,7 +698,7 @@ class: center, middle
   padding-right: 5px;
 }
 
-#wlibnndocl .gt_first_grand_summary_row {
+#duidrxlntb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -577,11 +708,11 @@ class: center, middle
   border-top-color: #D3D3D3;
 }
 
-#wlibnndocl .gt_striped {
+#duidrxlntb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wlibnndocl .gt_table_body {
+#duidrxlntb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -590,7 +721,7 @@ class: center, middle
   border-bottom-color: #D3D3D3;
 }
 
-#wlibnndocl .gt_footnotes {
+#duidrxlntb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -604,7 +735,7 @@ class: center, middle
   border-right-color: #D3D3D3;
 }
 
-#wlibnndocl .gt_footnote {
+#duidrxlntb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -613,7 +744,7 @@ class: center, middle
   padding-right: 5px;
 }
 
-#wlibnndocl .gt_sourcenotes {
+#duidrxlntb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -627,7 +758,7 @@ class: center, middle
   border-right-color: #D3D3D3;
 }
 
-#wlibnndocl .gt_sourcenote {
+#duidrxlntb .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -635,60 +766,60 @@ class: center, middle
   padding-right: 5px;
 }
 
-#wlibnndocl .gt_left {
+#duidrxlntb .gt_left {
   text-align: left;
 }
 
-#wlibnndocl .gt_center {
+#duidrxlntb .gt_center {
   text-align: center;
 }
 
-#wlibnndocl .gt_right {
+#duidrxlntb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wlibnndocl .gt_font_normal {
+#duidrxlntb .gt_font_normal {
   font-weight: normal;
 }
 
-#wlibnndocl .gt_font_bold {
+#duidrxlntb .gt_font_bold {
   font-weight: bold;
 }
 
-#wlibnndocl .gt_font_italic {
+#duidrxlntb .gt_font_italic {
   font-style: italic;
 }
 
-#wlibnndocl .gt_super {
+#duidrxlntb .gt_super {
   font-size: 65%;
 }
 
-#wlibnndocl .gt_footnote_marks {
+#duidrxlntb .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#wlibnndocl .gt_asterisk {
+#duidrxlntb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wlibnndocl .gt_slash_mark {
+#duidrxlntb .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#wlibnndocl .gt_fraction_numerator {
+#duidrxlntb .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#wlibnndocl .gt_fraction_denominator {
+#duidrxlntb .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;

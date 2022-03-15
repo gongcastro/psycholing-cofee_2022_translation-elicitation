@@ -37,6 +37,7 @@ library(purrr)
 library(brms)
 library(janitor)
 library(papaja)
+library(data.table)
 library(stringr)
 library(forcats)
 library(here)
@@ -76,6 +77,13 @@ stimuli <- readRDS(here("data", "stimuli.rds")) %>%
 
 fit_6 <- readRDS(here("data", "fit_6.rds"))
 
+responses <- readRDS(here("data", "responses.rds"))
+
+
+clearpond <- fread(here("data", "englishCPdatabase2.txt")) %>% 
+	as_tibble() %>% 
+	set_names(readLines(here("data", "clearpondHeaders_EN.txt"), warn = FALSE)) %>% 
+	clean_names()
 ```
 
 # Non-native speech-comprehension
@@ -85,7 +93,7 @@ Even for proficient bilinguals, non-native **speech comprehension is costly**<su
 <br>
 
 .footnote[
-[1] @lecumberri2010non, [2] @takata1990english, [3] @cutler2004patterns, [4] @christoffels2006cognate
+[1] Lecumberri et al. (2010), [2] Takata and Nábělek (1990), [3] Cutler et al. (2004), [4] Christoffels et al. (2006)
 ]
 
 --
@@ -97,79 +105,29 @@ Even for proficient bilinguals, non-native **speech comprehension is costly**<su
 --
 
 
-**Lexical processing** mechanisms are engaged despite mismatches<sup>3</sup>
+**Lexical processing** mechanisms are engaged despite these mismatches<sup>3</sup>, provided some acoustic similarity between the input and the native word-form
+
+
+---
+class:
+
+# Non-native word recognition
+
+Even in **total absence of familiarity** with the language, some sound sequences can trigger **word recognition**:
+
+> **Cognates** (form-similar translations)<sup>4</sup>:
+
+> Hearing/reading *botella* in Spanish can elicit *bottle* in the English listener 
+
+<br>
 
 --
 
+In absence of conceptual knowledge, **phonological similarity** is the only source of information
 
+> To what extent is **cross-language phonological similarity** sufficient for word recognition?
 
-**Cognates** (form-similar translations) are easier to translate<sup>4</sup>:
-
-> Translating *botella* to *bottle* is easier than translating *puerta* to *door*
-
-
-???
-
-* Native speaker of Spanish, native speaker of English
-* Non-native comprehension costlier
-* Phonological mismatches
-
-
----
-class:
-
-# Two routes for translation
-
-.center[
-<img src="../img/translation_1.png" alt="Translation diagram" width="450"/>
-]
-
----
-class:
-
-# Two routes for translation
-
-.center[
-<img src="../img/translation_2.png" alt="Translation diagram" width="450"/>
-]
-
----
-class:
-
-# Two routes for translation
-
-.center[
-<img src="../img/translation_3.png" alt="Translation diagram" width="450"/>
-]
-
----
-class:
-
-# Two routes for translation
-
-.center[
-<img src="../img/translation_4.png" alt="Translation diagram" width="450"/>
-]
-
-
----
-class:
-
-# Two routes for translation
-
-.center[
-<img src="../img/translation_5.png" alt="Translation diagram" width="450"/>
-]
-
-
----
-class:
-
-# A gap in the literature
-
-Most studies have collected data exclusively on high-proficiency bilinguals
-
-> In both high and low-proficiency bilinguals, disentangling the involvement of the conceptual and the lexical routes is difficult
+> Previous literature relies on **bilingual samples** (who can exploit both conceptual and lexical information)
 
 
 
@@ -192,67 +150,164 @@ We asked adults to **translate words from an unfamiliar language** to their nati
 ---
 class:
 
+<br>
+
+.center[
+<img src="../img/translation_1.png" alt="Translation diagram" width="450"/>
+]
+
+---
+class:
+
+<br>
+
+.center[
+<img src="../img/translation_2.png" alt="Translation diagram" width="450"/>
+]
+
+---
+class:
+
+<br>
+
+.center[
+<img src="../img/translation_3.png" alt="Translation diagram" width="450"/>
+]
+
+---
+class:
+
+<br>
+
+.center[
+<img src="../img/translation_4.png" alt="Translation diagram" width="450"/>
+]
+
+---
+class:
+
+<br>
+
+.center[
+<img src="../img/translation_5.png" alt="Translation diagram" width="450"/>
+]
+
+---
+class:
+
+<br>
+
+.center[
+<img src="../img/translation_6.png" alt="Translation diagram" width="450"/>
+]
+
+---
+class:
+
+<br>
+
+.center[
+<img src="../img/translation_7.png" alt="Translation diagram" width="450"/>
+]
+
+---
+class:
+
 # Methods
 
 ## Participants
 
+**Online** recruitment and data collection (PsychoPy/Pavlovia)
+
+<br>
 
 * 34 **English natives** translating **Spanish words** (spa &rarr; ENG)
 * 29 **English natives** translating **Catalan words** (spa &rarr; ENG)
 * 28 **Spanish natives** translating **Catalan words** (cat &rarr; SPA)
 
+<br>
+
 Self-reported proficiency in language of test < 2 in a 1-5 scale
 
-Proficiency in any other Roman language (e.g., Italian, Portuguese) < 3
+Proficiency in any other Romance language (e.g., Italian, Portuguese) < 3
 
 
 ---
 
 # Stimuli 
 
+High-frequency words uttered in child-directed speech
+
+Recorded by a Catalan-Spanish proficient bilingual
 
 **Catalan list**: `r stimuli %>% count(group) %>% pull(n) %>% .[1]` words
 **Spanish list**: `r stimuli %>% count(group) %>% pull(n) %>% .[2]` words
 
 <br>
 
---
-
-High-frequency words uttered in child-directed speech
-
-Recorded by a Catalan-Spanish proficient bilingual
-
-
 ---
 class:
 
----
-class: 
+# Predictors
 
-# Data analysis
+## Phonological similarity (Lenveshtein similarity)
 
-* Responses manually coded as **correct/incorrect** (typos allowed)
+> Phonological similarity between presented and target words<sup>1, 2</sup>
 
---
+**Levenshtein distance**: number of editions separating two character strings
 
-* **Logistic regression**: probability of correct translation
+<br>
 
---
+$$
+\begin{align}
+1 - \frac{\text{Levenshtein distance}}{Max(\text{Stimulus length}, \text{Translation length})}
+\end{align}
+$$
 
-* **Predictors**: $Frequency$, $PTHN$, $Levenshtein$
+<br>
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+stringdist::stringdist("teɪbəl", "mesa")
+stringdist::stringsim("teɪbəl", "mesa")
+```
 
 
---
+<br>
 
-* **Multilevel Bayesian model** (`brms`/Stan):
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+stringdist::stringdist("trEIn", "tɾEn")
+stringdist::stringsim("trEIn", "tɾEn")
+```
 
-> Participants and items as grouping variables
 
---
+<br>
 
-* Incrementally added predictors and selected model with **best predictive accuracy**
+.footnote[
+[1] Floccia, C., et al. (2018), [2] Levenshtein (1966)
+]
 
-> leave-one-one cross-validationc (*LOO*)
+
+
+class:
+
+# Predictors
+
+## Higher-frequency phonological neighbourhood density (*PTHN*)
+
+> Number of phonological neighbours with higher frequency (from CLEARPOND <sup>1,2</sup>)
+
+*calcetín*-*sock*: `r clearpond %>% filter(word %in% "sock") %>% pull(e_pthw) %>% strsplit(split = ";") %>% length()`
+
+`r clearpond %>% filter(word %in% "sock") %>% pull(e_pthw) %>% strsplit(split = ";") %>% unlist() %>% paste0(collapse = ", ")`
+
+*mesa*-*table*: `r clearpond %>% filter(word %in% "sock") %>% pull(e_pthw) %>% strsplit(split = ";") %>% length()`
+
+`r clearpond %>% filter(word %in% "bird") %>% pull(e_pthw) %>% strsplit(split = ";") %>% unlist() %>% paste0(collapse = ", ")`
+
+
+.footnote[
+[1] Marian et al. (2012), [2] Van Heuven et al. (1998)
+]
 
 
 ---
@@ -260,30 +315,7 @@ class:
 
 # Predictors
 
-* **Frequency**: lexical frequency of target word (from SUBTLEX-ESP<sup>1</sup> and SUBTLEX-CAT<sup>2</sup>) in Zipf scores (predicted positive impact)
-
---
-
-* **PTHN**: number of phonological neighbours with higher frequency (from CLEARPOND <sup>3</sup>) (predicted negative impact<sup>4</sup>)
-
-> *PTHN*<sub>book</sub> = 16 / *PTHN*<sub>sock</sub> = 3
-
---
-
-* **Levenshtein**: phonological similarity between presented and target words<sup>5</sup> (predicted positive impact)
-
-> Levenshtein<sub>teɪbəl-mesa</sub> = 5% / Levenshtein<sub>trEIn-tren</sub> = 27%
-
-
-.footnote[
-[1] @cuetos2011subtlex, [2] @boada2020subtlex, [3] @marian2012clearpond, [4] @van1998orthographic, [5] @levenshtein1966binary
-]
-
----
-
-# Stimuli 
-
-```{r stimuli-plot, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, include=TRUE, out.width="100%", fig.height=5, dpi=900}
+```{r stimuli-plot, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, include=TRUE, out.width="100%", fig.height=5, dpi=1200}
 
 medians <- stimuli %>% 
 	group_by(group) %>% 
@@ -467,6 +499,69 @@ stimuli %>%
 ```
 
 ---
+class: 
+
+# Predictors
+
+## Lexical frequency (Zipf score)
+
+> Lexical frequency of target word (from SUBTLEX-ENG<sup>1</sup> and SUBTLEX-SPA<sup>2</sup>) in Zipf scores
+
+<br>
+
+$$
+\begin{align}
+Frequency = log_{10}(fpmw+3) \\ \text{fpmw: frequency per million words}
+\end{align}
+$$
+
+
+
+.footnote[
+[1] Cuetos et al. (2012), [2] Boada et al. (2020), [3] Marian et al. (2012)
+]
+
+---
+class:
+
+# Predictors
+
+## Group (*a priori* contrasts)
+
+Do Spanish listeners perform better than English listeners after accounting for phonological similarity?
+
+> eng-CAT & eng-SPA vs. spa-CAT
+
+Do English listeners perform better translating Spanish words than Catalan words?
+
+* eng-CAT vs. eng-SPA
+
+
+---
+class: 
+
+# Data analysis
+
+* Responses manually coded as **correct/incorrect** (typos allowed)
+
+--
+
+* **Logistic regression**
+
+- Response variable: probability of **correct translation**
+- Predictors: **Levenshtein**, ***PTHN***, **Group** (3-way interaction), and **Frequency** (nuance predictor)
+
+--
+
+* **Multilevel Bayesian model** (`brms`/Stan): *participants* and *items* as grouping variables
+
+--
+
+* We incrementally added predictors and selected model with **best predictive accuracy**
+
+> Leave-one-one cross-validation (*LOO*)
+
+---
 class:
 
 # Results
@@ -520,7 +615,11 @@ posterior_draws_fixed %>%
 					"Levenshtein \u00d7 Group 1", "Levenshtein \u00d7 Group 2"
 				)
 			),
-		.value = ifelse(str_detect(.variable, "Intercept"), inv_logit_scaled(.value), .value/4)
+		.value = ifelse(
+			str_detect(.variable, "Intercept"), 
+			inv_logit_scaled(.value), 
+			.value/4
+		)
 	) %>% 
 	arrange(.variable) %>% 
 	ggplot() +
@@ -568,73 +667,83 @@ class:
 ```{r predictions, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, out.width="100%", fig.height=4, fig.width=7, dpi=900, fig.align='center'}
 
 nd <- expand.grid(
-	pthn_std = c(-1, 1),
+	lv_std = c(
+		min(fit_6$data$lv_std),
+		0,
+		max(fit_6$data$lv_std)
+	),
 	frequency_zipf_std = 0,
-	lv_std = seq(
-		min(fit_6$data$lv_std, na.rm = TRUE),
-		max(fit_6$data$lv_std, na.rm = TRUE),
+	pthn_std = seq(
+		min(fit_6$data$pthn_std, na.rm = TRUE),
+		max(fit_6$data$pthn_std, na.rm = TRUE),
 		by = 0.1
 	),
 	group = unique(fit_6$data$group)
 )
 
-posterior_epreds_fixed <- add_epred_draws(nd, fit_6, re_formula = NA)
-
-m <- posterior_epreds_fixed %>% 
-	mutate_at(vars(pthn_std, frequency_zipf_std), function(x) paste0(x, " SD")) %>% 
+m <- add_epred_draws(
+	nd, 
+	fit_6, 
+	ndraws = 100, 
+	re_formula = NA
+) %>% 
 	mutate(
-		pthn_std = case_when(
-			pthn_std=="-1 SD" ~ "Low PTHN",
-			pthn_std=="0 SD" ~ "Mean PTHN",
-			pthn_std=="1 SD" ~ "High PTHN"
-		),
-		frequency_zipf_std = case_when(
-			frequency_zipf_std=="-1 SD" ~ "Low frequency",
-			frequency_zipf_std=="0 SD" ~ "Mean frequency",
-			frequency_zipf_std=="1 SD" ~ "High frequency"
-		)
-	) 
+		lv_std = factor(
+			lv_std,
+			levels = c(
+				min(fit_6$data$lv_std),
+				0,
+				max(fit_6$data$lv_std)
+			),
+			labels = c(
+				paste0("-1 SD (", percent(min(responses$lv, na.rm = TRUE)), ")"),
+				paste0("Mean (", percent(mean(responses$lv, na.rm = TRUE)), ")"),
+				paste0("+1 SD (", percent(max(responses$lv, na.rm = TRUE)), ")")
+			)
+		) 
+	)
 
-m %>% 
-	ggplot() +
+
+ggplot(m) +
 	aes(
-		lv_std, 
-		.epred, 
-		colour = pthn_std, 
-		fill = pthn_std,
-		linetype = pthn_std
+		pthn_std, 
+		.epred,
+		colour = lv_std,
+		fill = lv_std
 	) +
 	facet_wrap(~group) +
 	geom_hline(
-		yintercept = 0.5,
+		yintercept = 0.5, 
 		colour = "grey"
 	) +
-	stat_lineribbon(
-		.width = 0.95,
-		alpha = 1/2,
-		colour = NA
+	geom_line(
+		aes(group = interaction(lv_std, .draw)), 
+		size = 0.65,
+		alpha = 0.5,
+		show.legend = TRUE
 	) +
 	stat_summary(
-		aes(linetype = pthn_std),
-		fun = mean,
+		aes(linetype = lv_std), 
+		fun = mean, 
 		geom = "line",
-		colour = "black",
-		size = 1, 
+		colour = "black", 
+		size = 0.75,
 		show.legend = TRUE
 	) +
 	annotate(
-		"segment",
+		"segment", 
 		x = -0.5, 
 		xend = -0.9, 
-		y = 0.85,
+		y = 0.85, 
 		yend = 0.85, 
-		arrow = arrow(length = unit(0.1, "cm")),
-		size = .5) +
+		arrow = arrow(length = unit(0.1, "cm")), 
+		size = .5
+	) +
 	annotate(
-		"segment",
+		"segment", 
 		x = 2.25, 
-		xend = 2.65,
-		y = 0.85,
+		xend = 2.65, 
+		y = 0.85, 
 		yend = 0.85, 
 		arrow = arrow(length = unit(0.1, "cm")),
 		size = .5
@@ -643,25 +752,24 @@ m %>%
 		"text", 
 		x = -0.5, 
 		y = 0.95, 
-		size = 2.75, 
+		size = 2.75,
 		label = "Less similar"
 	) +
 	annotate(
 		"text", 
-		x = 2.15,
+		x = 2.15, 
 		y = 0.95, 
-		size = 2.75, 
+		size = 2.75,
 		label = "More similar"
 	) +
 	labs(
-		x = "Phonological similarity\n(Levenshtein, SD)", 
+		x = paste0("PTHN (+1 SD, ", round(sd(responses$pthn), 1), " higher-frequency neighbours)"),
 		y = "P(Correct)", 
-		colour = "PTHN", 
-		fill = "PTHN", 
-		linetype = "PTHN",
-		title = "Population-level predictions"
+		colour = "Levenshtein similarity",
+		fill = "Levenshtein similarity",
+		linetype = "Levenshtein similarity",
+		title = "Population-level posterior predictions"
 	) +
-	scale_color_manual(values = c("#1E88E5", "#ff2976")) +
 	scale_y_continuous(
 		labels = function(x) percent(round(x, 2)),
 		limits = c(0, 1),
@@ -671,7 +779,6 @@ m %>%
 		legend.position = "top",
 		plot.title = element_blank()
 	)
-
 
 ```
 
@@ -707,6 +814,26 @@ Speakers of a similar language (cat-SPA):
 ---
 class: inverse, center, middle
 
+
+# References
+
+Lecumberri, M. L. G., Cooke, M., & Cutler, A. (2010). Non-native speech perception in adverse conditions: A review. Speech communication, 52(11-12), 864-886.
+
+Takata, Y., & Nábělek, A. K. (1990). English consonant recognition in noise and in reverberation by Japanese and American listeners. The Journal of the Acoustical Society of America, 88(2), 663-666.
+
+Cutler, A., Weber, A., Smits, R., & Cooper, N. (2004). Patterns of English phoneme confusions by native and non-native listeners. The Journal of the Acoustical Society of America, 116(6), 3668-3678.
+
+Christoffels, I. K., De Groot, A. M., & Kroll, J. F. (2006). Memory and language skills in simultaneous interpreters: The role of expertise and language proficiency. Journal of Memory and Language, 54(3), 324-345.
+
+Floccia, C., Sambrook, T. D., Delle Luche, C., Kwok, R., Goslin, J., White, L., ... & Patricia, J. (2018). Vocabulary of 2-year-olds learning English and an additional language: norms and effects of linguistic distance. Monographs of the Society for Research in Child Development, 83(1), 7-108.
+
+Levenshtein, V. I. (1966, February). Binary codes capable of correcting deletions, insertions, and reversals. In Soviet physics doklady (Vol. 10, No. 8, pp. 707-710).
+
+Marian, V., Bartolotti, J., Chabal, S., & Shook, A. (2012). CLEARPOND: Cross-linguistic easy-access resource for phonological and orthographic neighborhood densities.
+
+Van Heuven, W. J., Dijkstra, T., & Grainger, J. (1998). Orthographic neighborhood effects in bilingual word recognition. Journal of memory and language, 39(3), 458-483.
+
+Cuetos, F., Glez-Nosti, M., Barbón, A., & Brysbaert, M. (2012). SUBTLEX-ESP: Spanish word frequencies based on film subtitles. Psicológica, 33(2), 133-143.
 
 # Appendix
 
