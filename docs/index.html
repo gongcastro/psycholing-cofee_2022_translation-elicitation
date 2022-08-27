@@ -3,7 +3,7 @@
   <head>
     <title>The role of cognateness in non-native spoken word recognition</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Gonzalo Garcia-Castro, Serene Siow, Núria Sebastian-Galles, Kim Plunkett" />
+    <meta name="author" content="Gonzalo Garcia-Castro, Serene Siow, Núria Sebastian-Galles and Kim Plunkett" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
@@ -14,7 +14,7 @@ class: center, middle, inverse, title-slide
 
 # The role of cognateness in non-native spoken word recognition
 ## A translation elicitation study
-### Gonzalo Garcia-Castro, Serene Siow, Núria Sebastian-Galles, Kim Plunkett
+### Gonzalo Garcia-Castro, Serene Siow, Núria Sebastian-Galles and Kim Plunkett
 ### Psycholinguistics Coffee
 ### March 16th, 2022
 
@@ -43,7 +43,7 @@ Even for proficient bilinguals, non-native **speech comprehension is costly**&lt
 --
 
 
-**Lexical processing** mechanisms are engaged despite these mismatches&lt;sup&gt;3&lt;/sup&gt;, provided some acoustic similarity between the input and the native word-form
+**Lexical processing** mechanisms are engaged despite these mismatches&lt;sup&gt;3&lt;/sup&gt;
 
 
 ---
@@ -65,8 +65,6 @@ In absence of conceptual knowledge, **phonological similarity** is the only sour
 
 &gt; To what extent is **cross-language phonological similarity** sufficient for word recognition?
 
-&gt; Previous literature relies on **bilingual samples** (who can exploit both conceptual and lexical information)
-
 
 
 ---
@@ -76,7 +74,7 @@ class:
 
 We asked adults to **translate words from an unfamiliar language** to their native language:
 
-&gt; If the lexical route is sufficient for translation, listeners should benefit from **phonological overlap**
+&gt; If phonological similarity is sufficient for translation, listeners should benefit greatly from **phonological overlap**
 
 **Translation elicitation** task:
 
@@ -179,6 +177,7 @@ High-frequency words uttered in child-directed speech
 Recorded by a Catalan-Spanish proficient bilingual
 
 **Catalan list**: 86 words
+
 **Spanish list**: 103 words
 
 &lt;br&gt;
@@ -202,44 +201,9 @@ $$
 \end{align}`
 $$
 
-&lt;br&gt;
+teɪbəl-mesa: 5 / 16.67%
 
-
-```r
-stringdist::stringdist("teɪbəl", "mesa")
-```
-
-```
-## [1] 19
-```
-
-```r
-stringdist::stringsim("teɪbəl", "mesa")
-```
-
-```
-## [1] 0.05
-```
-
-
-&lt;br&gt;
-
-
-```r
-stringdist::stringdist("trEIn", "tɾEn")
-```
-
-```
-## [1] 8
-```
-
-```r
-stringdist::stringsim("trEIn", "tɾEn")
-```
-
-```
-## [1] 0.2727273
-```
+trEIn-tɾEn: 2 / 60.00%
 
 
 &lt;br&gt;
@@ -249,7 +213,7 @@ stringdist::stringsim("trEIn", "tɾEn")
 ]
 
 
-
+---
 class:
 
 # Predictors
@@ -258,13 +222,13 @@ class:
 
 &gt; Number of phonological neighbours with higher frequency (from CLEARPOND &lt;sup&gt;1,2&lt;/sup&gt;)
 
-*calcetín*-*sock*: 1
+*calcetín*-*sock*: 16
 
-sick, rock, Doc, knock, sake, lock, suck, shock, seek, sec, sack, cock, dock, stock, socks, soccer
+&gt; sick, rock, Doc, knock, sake, lock, suck, shock, seek, sec, sack, cock, dock, stock, socks, soccer
 
 *mesa*-*table*: 1
 
-bad, heard, word, bed, third, board, burn
+&gt; able
 
 
 .footnote[
@@ -272,12 +236,7 @@ bad, heard, word, bed, third, board, burn
 ]
 
 
----
-class:
 
-# Predictors
-
-&lt;img src="index_files/figure-html/stimuli-plot-1.png" width="100%" /&gt;
 
 ---
 class: 
@@ -311,11 +270,12 @@ class:
 
 Do Spanish listeners perform better than English listeners after accounting for phonological similarity?
 
-&gt; eng-CAT &amp; eng-SPA vs. spa-CAT
+&gt; cat-ENG &amp; spa-ENG vs. cat-SPA
 
 Do English listeners perform better translating Spanish words than Catalan words?
 
-* eng-CAT vs. eng-SPA
+&gt; cat-ENG vs. spa-ENG
+
 
 
 ---
@@ -329,8 +289,8 @@ class:
 
 * **Logistic regression**
 
-- Response variable: probability of **correct translation**
-- Predictors: **Levenshtein**, ***PTHN***, **Group** (3-way interaction), and **Frequency** (nuance predictor)
+	- Response variable: probability of **correct translation**
+	- Predictors: **Levenshtein**, ***PTHN***, **Group** (3-way interaction), and **Frequency** (nuance predictor)
 
 --
 
@@ -345,13 +305,15 @@ class:
 ---
 class:
 
-# Results
+# Results: posterior distributions
 
 &lt;img src="index_files/figure-html/posterior-fixed-1.png" width="100%" /&gt;
 
 
 ---
 class:
+
+# Results: Posterior predictions
 
 &lt;img src="index_files/figure-html/predictions-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
@@ -413,6 +375,14 @@ Cuetos, F., Glez-Nosti, M., Barbón, A., &amp; Brysbaert, M. (2012). SUBTLEX-ESP
 ---
 class:
 
+# Predictors
+
+&lt;img src="index_files/figure-html/stimuli-plot-1.png" width="100%" /&gt;
+
+
+---
+class:
+
 &lt;img src="index_files/figure-html/posterior-sds-1.png" width="100%" /&gt;
 
 
@@ -422,12 +392,12 @@ class:
 
 class: center, middle
 
-<div id="duidrxlntb" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="jwizemnhfi" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#duidrxlntb .gt_table {
+#jwizemnhfi .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -452,7 +422,7 @@ class: center, middle
   border-left-color: #D3D3D3;
 }
 
-#duidrxlntb .gt_heading {
+#jwizemnhfi .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -464,7 +434,7 @@ class: center, middle
   border-right-color: #D3D3D3;
 }
 
-#duidrxlntb .gt_title {
+#jwizemnhfi .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -476,7 +446,7 @@ class: center, middle
   border-bottom-width: 0;
 }
 
-#duidrxlntb .gt_subtitle {
+#jwizemnhfi .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -488,13 +458,13 @@ class: center, middle
   border-top-width: 0;
 }
 
-#duidrxlntb .gt_bottom_border {
+#jwizemnhfi .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#duidrxlntb .gt_col_headings {
+#jwizemnhfi .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -509,7 +479,7 @@ class: center, middle
   border-right-color: #D3D3D3;
 }
 
-#duidrxlntb .gt_col_heading {
+#jwizemnhfi .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -529,7 +499,7 @@ class: center, middle
   overflow-x: hidden;
 }
 
-#duidrxlntb .gt_column_spanner_outer {
+#jwizemnhfi .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -541,15 +511,15 @@ class: center, middle
   padding-right: 4px;
 }
 
-#duidrxlntb .gt_column_spanner_outer:first-child {
+#jwizemnhfi .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#duidrxlntb .gt_column_spanner_outer:last-child {
+#jwizemnhfi .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#duidrxlntb .gt_column_spanner {
+#jwizemnhfi .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -561,7 +531,7 @@ class: center, middle
   width: 100%;
 }
 
-#duidrxlntb .gt_group_heading {
+#jwizemnhfi .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -586,7 +556,7 @@ class: center, middle
   vertical-align: middle;
 }
 
-#duidrxlntb .gt_empty_group_heading {
+#jwizemnhfi .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -601,15 +571,15 @@ class: center, middle
   vertical-align: middle;
 }
 
-#duidrxlntb .gt_from_md > :first-child {
+#jwizemnhfi .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#duidrxlntb .gt_from_md > :last-child {
+#jwizemnhfi .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#duidrxlntb .gt_row {
+#jwizemnhfi .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -628,7 +598,7 @@ class: center, middle
   overflow-x: hidden;
 }
 
-#duidrxlntb .gt_stub {
+#jwizemnhfi .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -641,7 +611,7 @@ class: center, middle
   padding-right: 5px;
 }
 
-#duidrxlntb .gt_stub_row_group {
+#jwizemnhfi .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -655,11 +625,11 @@ class: center, middle
   vertical-align: top;
 }
 
-#duidrxlntb .gt_row_group_first td {
+#jwizemnhfi .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#duidrxlntb .gt_summary_row {
+#jwizemnhfi .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -669,16 +639,16 @@ class: center, middle
   padding-right: 5px;
 }
 
-#duidrxlntb .gt_first_summary_row {
+#jwizemnhfi .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#duidrxlntb .gt_first_summary_row.thick {
+#jwizemnhfi .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#duidrxlntb .gt_last_summary_row {
+#jwizemnhfi .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -688,7 +658,7 @@ class: center, middle
   border-bottom-color: #D3D3D3;
 }
 
-#duidrxlntb .gt_grand_summary_row {
+#jwizemnhfi .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -698,7 +668,7 @@ class: center, middle
   padding-right: 5px;
 }
 
-#duidrxlntb .gt_first_grand_summary_row {
+#jwizemnhfi .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -708,11 +678,11 @@ class: center, middle
   border-top-color: #D3D3D3;
 }
 
-#duidrxlntb .gt_striped {
+#jwizemnhfi .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#duidrxlntb .gt_table_body {
+#jwizemnhfi .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -721,7 +691,7 @@ class: center, middle
   border-bottom-color: #D3D3D3;
 }
 
-#duidrxlntb .gt_footnotes {
+#jwizemnhfi .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -735,7 +705,7 @@ class: center, middle
   border-right-color: #D3D3D3;
 }
 
-#duidrxlntb .gt_footnote {
+#jwizemnhfi .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -744,7 +714,7 @@ class: center, middle
   padding-right: 5px;
 }
 
-#duidrxlntb .gt_sourcenotes {
+#jwizemnhfi .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -758,7 +728,7 @@ class: center, middle
   border-right-color: #D3D3D3;
 }
 
-#duidrxlntb .gt_sourcenote {
+#jwizemnhfi .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -766,60 +736,60 @@ class: center, middle
   padding-right: 5px;
 }
 
-#duidrxlntb .gt_left {
+#jwizemnhfi .gt_left {
   text-align: left;
 }
 
-#duidrxlntb .gt_center {
+#jwizemnhfi .gt_center {
   text-align: center;
 }
 
-#duidrxlntb .gt_right {
+#jwizemnhfi .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#duidrxlntb .gt_font_normal {
+#jwizemnhfi .gt_font_normal {
   font-weight: normal;
 }
 
-#duidrxlntb .gt_font_bold {
+#jwizemnhfi .gt_font_bold {
   font-weight: bold;
 }
 
-#duidrxlntb .gt_font_italic {
+#jwizemnhfi .gt_font_italic {
   font-style: italic;
 }
 
-#duidrxlntb .gt_super {
+#jwizemnhfi .gt_super {
   font-size: 65%;
 }
 
-#duidrxlntb .gt_footnote_marks {
+#jwizemnhfi .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#duidrxlntb .gt_asterisk {
+#jwizemnhfi .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#duidrxlntb .gt_slash_mark {
+#jwizemnhfi .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#duidrxlntb .gt_fraction_numerator {
+#jwizemnhfi .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#duidrxlntb .gt_fraction_denominator {
+#jwizemnhfi .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
